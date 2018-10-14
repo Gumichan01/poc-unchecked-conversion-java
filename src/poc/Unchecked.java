@@ -9,8 +9,8 @@ public class Unchecked {
 
 	public static List<Object[]> getList() {
 
-		// return castList(getNotSafeList());
-		return getNotSafeList();	// -> unchecked conversion
+		// return castList(getNotSafeList()); // -> safe, no problem
+		return getNotSafeList(); // -> unchecked conversion, it will crash at runtime
 	}
 
 	private static List<Object[]> castList(Collection<?> c) {
@@ -38,10 +38,10 @@ public class Unchecked {
 
 	private static List getNotSafeList() {
 
-		ArrayList a = new ArrayList();
-		a.add(new String[] { "4098", "256", null });
+		List a = new ArrayList();
 		a.add(new BigInteger("1024"));
 		a.add(new BigInteger("256"));
+		a.add(new String[] { "4098", "256", null });
 		return a;
 	}
 }
